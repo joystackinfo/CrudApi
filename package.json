@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/joystackinfo/CRUD-API/issues"
   },
-  "homepage": "https://github.com/joystackinfo/CRUD-API#readme"
+  "homepage": "https://github.com/joystackinfo/CRUD-API#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
 }
