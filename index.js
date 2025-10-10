@@ -1,15 +1,22 @@
 const express = require('express')
 const mongoose = require('mongoose');
-
 const app = express()
+
+
+app.use(express.json()) // Allow express to parse json
 
 
 
 app.get('/', (req, res) => {  // create a get route
   res.send('Hello running from node api server updated');
 
-
 });
+
+app.post('/api/products', (req, res) => {
+  console.log(res.boby)
+  res.send(res.boby)
+});
+
 
 // connect to mongodb database using mongoose
 mongoose.connect('mongodb+srv://joynelsoninfo_db_user:RHbYyQ9PXy7r8ax0@my-backend.minb8ea.mongodb.net/?retryWrites=true&w=majority&appName=My-backend')
