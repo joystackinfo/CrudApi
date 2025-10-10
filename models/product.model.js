@@ -1,7 +1,7 @@
-const monogoose = require('mongoose'); // include monogoose
+const mongoose = require('mongoose'); // include monogoose
 
 
-const productSchema = new monogoose.Schema( // define a schema for the products and store it in productschema as a variable
+const productSchema = new mongoose.Schema( // define a schema for the products and store it in productschema as a variable
     {
 
         name: {

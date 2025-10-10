@@ -13,8 +13,8 @@ app.get('/', (req, res) => {  // create a get route
 });
 
 app.post('/api/products', (req, res) => {
-  console.log(res.boby)
-  res.send(res.boby)
+  console.log(req.body);
+  res.send(req.body);
 });
 
 
