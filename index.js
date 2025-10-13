@@ -15,8 +15,7 @@ app.get('/', (req, res) => {  // create a get route
 
 // Allowing products viewing from database
 
-app.post('/api/products', async (req, res) => {
-
+app.get('/api/products', async (req, res) => {
   try {
     const products = await product.find({}); // create a new product using the product model and the request body
       res.status(200).json(products);
@@ -25,6 +24,19 @@ app.post('/api/products', async (req, res) => {
     res.status(500).json({message:error.message});
   }
   });
+
+
+  //For viewing single product
+  app.get('/api/products/:id', async (req, res) => {
+    try {
+      const {id} = req.params;
+    const product = await product.findById(id);  // acces the id for a singlr product
+    res.status(200).json(product);
+    }
+    catch (error) {
+    res.status(500).json({message:error.message});
+  }
+});
 
 // adding multiple products to database
 app.post('/api/products', async (req, res) => {
