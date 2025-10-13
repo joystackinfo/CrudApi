@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose');
-const product = require('./models/productModel.js');
+const product = require('./models/product.model.js');
 const app = express()
 
 
@@ -13,11 +13,25 @@ app.get('/', (req, res) => {  // create a get route
 
 });
 
+// Allowing products viewing from database
+
+app.post('/api/products', async (req, res) => {
+
+  try {
+    const products = await product.find({}); // create a new product using the product model and the request body
+      res.status(200).json(products);
+
+  } catch (error) {
+    res.status(500).json({message:error.message});
+  }
+  });
+
+// adding multiple products to database
 app.post('/api/products', async (req, res) => {
 
   try {
 
-    const products = await products.create(req.body);
+    const products = await product.create(req.body); // create a new product using the product model and the request body
       res.status(200).json(products);
 
   } catch (error) {
