@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose');
+const product = require('./models/productModel.js');
 const app = express()
 
 
@@ -12,9 +13,18 @@ app.get('/', (req, res) => {  // create a get route
 
 });
 
-app.post('/api/products', (req, res) => {
-  console.log(req.body);
-  res.send(req.body);
+app.post('/api/products', async (req, res) => {
+
+  try {
+
+    const products = await products.create(req.body);
+      res.status(200).json(products);
+
+  } catch (error) {
+    res.status(500).json({message:error.message});
+    
+  }
+
 });
 
 
