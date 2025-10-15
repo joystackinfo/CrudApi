@@ -46,6 +46,8 @@ app.put('/api/product/:id', async (req, res) => {
 
   try {
     const { id } = req.params; //destruct the id from params
+    console.log("ID being updated:", id);
+    console.log("Request body:", req.body);
 
     const product = await Product.findByIdAndUpdate(id, req.body, { new: true }); // to find and update the product by id
   if(!product){
