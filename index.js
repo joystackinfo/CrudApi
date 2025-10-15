@@ -51,12 +51,12 @@ app.put('/api/product/:id', async (req, res) => {
   if(!product){
         return res.status(404).json({ msg: "product not found" });
   }
-  const updatedProduct = await Product.findById(id);
-  res.status(200).json(updatedProduct);
+    res.status(200).json(product);
 
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+
 });
 
 
