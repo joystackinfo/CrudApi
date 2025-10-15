@@ -23,7 +23,7 @@ app.get('/api/products', async (req, res) => {
 // For viewing single product
 app.get('/api/products/:id', async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.params; //destruct the id from params
     const product = await Product.findById(id); // to find the product by id
     res.status(200).json(product);
   } catch (error) {
@@ -34,8 +34,26 @@ app.get('/api/products/:id', async (req, res) => {
 // Adding multiple products to database
 app.post('/api/products', async (req, res) => {
   try {
-    const products = await Product.create(req.body);
+    const products = await Product.create(req.body);  //wait for the product to be created in database
     res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+//Update the product
+app.put('/api/products/:id', async (req, res) => {
+
+  try {
+    const { id } = req.params; //destruct the id from params
+
+    const product = await Product.findByIdAndUpdate(id, req.body, { new: true }); // to find and update the product by id
+  if(!product){
+        return res.status(404).json({ msg: "product not found" });
+  }
+  const updatedProduct = await Product.findById(id);
+  res.status(200).json(updatedProduct);
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
