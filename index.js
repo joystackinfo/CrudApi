@@ -21,7 +21,7 @@ app.get('/api/products', async (req, res) => {
 });
 
 // For viewing single product
-app.get('/api/products/:id', async (req, res) => {
+app.get('/api/product/:id', async (req, res) => {
   try {
     const { id } = req.params; //destruct the id from params
     const product = await Product.findById(id); // to find the product by id
@@ -42,7 +42,7 @@ app.post('/api/products', async (req, res) => {
 });
 
 //Update the product
-app.put('/api/products/:id', async (req, res) => {
+app.put('/api/product/:id', async (req, res) => {
 
   try {
     const { id } = req.params; //destruct the id from params
