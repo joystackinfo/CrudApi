@@ -14,6 +14,7 @@ app.use("/api/products", productRoutes);
 
 
 
+
 app.get('/', (req, res) => {  // create a get route
   res.send('Hello running from node api server updated');
 });
