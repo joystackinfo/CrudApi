@@ -4,6 +4,7 @@ const Product = require('./models/product.model.js');
 const app = express()
 
 app.use(express.json()) // Allow express to parse json
+app.use(express.urlencoded({extended:false})) // Allow express to parse urlencoded data
 
 app.get('/', (req, res) => {  // create a get route
   res.send('Hello running from node api server updated');
