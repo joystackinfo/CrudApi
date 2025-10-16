@@ -2,13 +2,14 @@ const express = require('express')
 const mongoose = require('mongoose');
 const Product = require('./models/product.model.js');
 const app = express()
+const productRoutes = require('./routes/product.route.js');
+
 
 //MIDDLEWARE
 app.use(express.json()) // Allow express to parse json
 app.use(express.urlencoded({extended:false})) // Allow express to parse urlencoded data
 
-
-// ROUTES 
+// ROUTES
 app.use("/api/products", productRoutes);
 
 
