@@ -3,12 +3,24 @@ const mongoose = require('mongoose');
 const Product = require('./models/product.model.js');
 const app = express()
 
+//MIDDLEWARE
 app.use(express.json()) // Allow express to parse json
 app.use(express.urlencoded({extended:false})) // Allow express to parse urlencoded data
+
+
+// ROUTES 
+app.use("/api/products", productRoutes);
+
+
+
+
 
 app.get('/', (req, res) => {  // create a get route
   res.send('Hello running from node api server updated');
 });
+
+
+
 
 
 // Allowing products viewing from database
