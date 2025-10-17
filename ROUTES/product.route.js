@@ -9,16 +9,16 @@ router.get('/', getProducts);
 
 
 // Get a single product by ID
-router.get("/:id" , getProduct);
+router.get("/:id", getProduct);
 
 //Create a product
-router.post('/' , createProduct);
+router.post('/', createProduct);
 
 //update a product
-router.put('/:id' , updateProduct);
+router.put('/:id', updateProduct);
 
 //delete a product
-router.delete('/:id' , deleteProduct);
+router.delete('/:id', deleteProduct);
 
 
 module.exports = router;
