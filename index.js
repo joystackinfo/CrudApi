@@ -45,6 +45,8 @@ app.get('/api/products/:id', async (req, res) => {
   }
 });
 
+
+
 // Adding multiple products to database
 app.post('/api/products', async (req, res) => {
   try {

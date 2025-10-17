@@ -15,7 +15,7 @@ const getProducts = async (req, res) => {
   }
 };
 
-
+// Controller function to get a single product by ID
 const getProduct =  async (req, res) => {
   try {
     const { id } = req.params; //destruct the id from params
@@ -27,6 +27,17 @@ const getProduct =  async (req, res) => {
   }
 };
 
+
+//controlller functin for create product
+const createProduct = async (req , res ) =>{
+
+  try {
+    const products = await Product.create(req.body);  //wait for the product to be created in database
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
   
 module.exports = {
   getProducts,

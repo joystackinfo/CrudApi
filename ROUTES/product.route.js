@@ -11,5 +11,8 @@ router.get('/', getProducts);
 // Get a single product by ID
 router.get("/:id" , getProduct);
 
+//Create a product
+router.post('/' , createProduct);
+
 
 module.exports = router;
