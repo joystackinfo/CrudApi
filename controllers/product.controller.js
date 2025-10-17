@@ -21,8 +21,8 @@ const getProduct =  async (req, res) => {
     const { id } = req.params; //destruct the id from params
     const product = await Product.findById(id); // to find the product by id
     res.status(200).json(product);
-
-  } catch (error) {
+  } 
+  catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
@@ -34,12 +34,15 @@ const createProduct = async (req , res ) =>{
   try {
     const products = await Product.create(req.body);  //wait for the product to be created in database
     res.status(200).json(products);
-  } catch (error) {
+  } 
+  catch (error) {
     res.status(500).json({ message: error.message });
+  
   }
 };
   
 module.exports = {
   getProducts,
-  getProduct
+  getProduct, 
+  createProduct
 };  // to export the file
