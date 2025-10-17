@@ -40,9 +40,29 @@ const createProduct = async (req , res ) =>{
   
   }
 };
-  
+
+//controller fuction for update product
+const updateProduct = async (req, res) => {
+
+  try {
+    const { id } = req.params; //destruct the id from params
+    console.log("ID being updated:", id);
+    console.log("Request body:", req.body);
+
+    const product = await Product.findByIdAndUpdate(id, req.body, { new: true }); // to find and update the product by id
+  if(!product){
+        return res.status(404).json({ msg: "product not found" });
+  }
+    res.status(200).json(product);
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getProducts,
   getProduct, 
-  createProduct
+  createProduct,
+  updateProduct
 };  // to export the file
