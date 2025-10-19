@@ -82,6 +82,7 @@ const deleteProduct = async (req, res) => {
 };
 
 
+
 // to export the file
 module.exports = {
   getProducts,
