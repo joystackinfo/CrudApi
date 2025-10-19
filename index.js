@@ -19,7 +19,6 @@ app.get('/', (req, res) => {  // create a get route
 });
 
 
-
 // connect to mongodb database using mongoose
 mongoose.connect('mongodb+srv://joynelsoninfo_db_user:RHbYyQ9PXy7r8ax0@my-backend.minb8ea.mongodb.net/?retryWrites=true&w=majority&appName=My-backend')
   .then(() => {
