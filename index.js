@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose');
 const Product = require('./models/product.model.js');
+ const userRoutes = require('./routes/user.route.js');
 const app = express()
 const productRoutes = require('./routes/product.route.js');
 require('dotenv').config();
@@ -12,6 +13,9 @@ app.use(express.urlencoded({extended:false})) // Allow express to parse urlencod
 
 // ROUTES
 app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
+
+
 
 
 // Test route
