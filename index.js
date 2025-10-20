@@ -21,11 +21,11 @@ app.get('/', (req, res) => {  // create a get route
 
 
 // connect to mongodb database using mongoose
-mongoose.connect('mongodb+srv://joynelsoninfo_db_user:RHbYyQ9PXy7r8ax0@my-backend.minb8ea.mongodb.net/?retryWrites=true&w=majority&appName=My-backend')
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log(' Connected to Database');
-    app.listen(3000, () => {
-      console.log(' Server is running on port 3000');
+    app.listen(process.env.PORT, () => {
+      console.log(` Server is running on port ${process.env.PORT}`);
     });
   })
   .catch(err => {
