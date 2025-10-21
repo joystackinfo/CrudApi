@@ -1,19 +1,19 @@
 
 const Product = require('../models/product.model.js'); //
+const { find } = require('../models/user.model.js');
 
 
 
 // Controller function to get all products
 const getProducts = async (req, res) => {
-
   try {
-    const products = await Product.find({}); // find all products in database
+    const products = await Product.find(req.body);  //wait for the product to be created in database
     res.status(200).json(products);
-
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 // Controller function to get a single product by ID
 const getProduct = async (req, res) => {
@@ -90,4 +90,4 @@ module.exports = {
   createProduct,
   updateProduct,
   deleteProduct
-}; 
+};
