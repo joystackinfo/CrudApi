@@ -12,7 +12,13 @@ const User = require('../models/user.model.js'); // imort the user model
 
     // Check if any field is missing
     if (!username || !email || !password) { 
-     return res.status(400).json({ msg: "All fields are required" });
+      return res.status(400).json({ msg: "All fields are required" });
+    }
+
+    // Check if user already exists
+    const exist = await User.findOne({ email });
+    if (exist) {
+      return res.status(409).json({ msg: "User already exists" });
     }
          const hashedPassword = await bcrypt.hash(password, 10);
          const user = await User.create({
