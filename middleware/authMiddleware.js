@@ -1,14 +1,14 @@
 const jwt = require("jsonwebtoken")
    
-try {
-    
-const verifyToken = (req , res , next) =>
-    constauthHeader= req.headers.authorization; // check the request header
    
-if(!authHeader || !authHeader.startsWITH("Bearer "))
+const verifyToken = (req , res , next) => {
+try {
+      const authHeader= req.headers.authorization; // check the request header
+   
+if(!authHeader || !authHeader.startsWith("Bearer ")) {
     return res.status(401)
-   .json({msag:"no token provided  access denied"}) //check if the token has started to avalale
-     
+   .json({msg:"no token provided  access denied"}) //check if the token has started to avalale
+}
 
    const token = authHeader.split(" ")[1]; //split the bearer and the real token.
 
@@ -16,6 +16,10 @@ if(!authHeader || !authHeader.startsWITH("Bearer "))
    req.user = decoded // attach the user info to the request after jwt is verified
    next(); // move to the next  route or function
 
-   } catch (error) {
-   return res.status(401).json({msg: "Invalid or expired token"})
+} catch (error) {
+    res.status(401).json({msg : "Invalid or expired token"}); //log an error
+   
 }
+}
+
+  module.exports = verifyToken;
