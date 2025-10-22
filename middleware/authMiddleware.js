@@ -5,9 +5,9 @@ const verifyToken = (req , res , next) => {
 try {
       const authHeader= req.headers.authorization; // check the request header
    
-if(!authHeader || !authHeader.startsWith("Bearer ")) {
+if(!authHeader || !authHeader.startsWith("Bearer ")) { 
     return res.status(401)
-   .json({msg:"no token provided  access denied"}) //check if the token has started to avalale
+   .json({msg:"no token provided  access denied"}) // check if the header exist and starts with Bearererr
 }
 
    const token = authHeader.split(" ")[1]; //split the bearer and the real token.
