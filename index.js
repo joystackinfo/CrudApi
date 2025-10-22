@@ -3,8 +3,10 @@ const mongoose = require('mongoose');
 const Product = require('./models/product.model.js');
  const userRoutes = require('./routes/user.route.js');
 const app = express()
+const verifyToken = require(' ./middleware/authmiddleware.js');
 const productRoutes = require('./routes/product.route.js');
 require('dotenv').config();
+
 
 
 //MIDDLEWARE

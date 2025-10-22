@@ -1,7 +1,7 @@
 const express = require('express'); // include express
-const verifyToken = require('../middleware/verifyToken.js'); // export token middleware
-const { registerUser, loginUser } = require('../controllers/user.controller.js'); //import controller function
 
+const { registerUser, loginUser } = require('../controllers/user.controller.js'); //import controller function
+const verifyToken = require(' ../middleware/authmiddleware.js');
 const router = express.Router(); // include express router
 
 // Route for user registration
