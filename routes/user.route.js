@@ -12,7 +12,7 @@ router.post('/register', registerUser);
 router.post('/login', loginUser); 
 
 //Route for getAllUsers
-router.get('/', getAllUsers)
+router.get('/', getAllUsers) 
 
 
 //protected Route(user profile)
