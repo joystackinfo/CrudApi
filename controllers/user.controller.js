@@ -20,7 +20,7 @@ const User = require('../models/user.model.js'); // imort the user model
     if (exist) {
       return res.status(409).json({ msg: "User already exists" });
     }
-         const hashedPassword = await bcrypt.hash(password, 10);
+         const hashedPassword = await bcrypt.hash(password, 12);
          const user = await User.create({
          username,
          email,
@@ -80,10 +80,16 @@ const loginUser = async (req, res) => {
   }
 };
 
+//Get all users
 
-
-
-
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find({}, '-password'); // exclude password field
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 
 
@@ -91,5 +97,6 @@ const loginUser = async (req, res) => {
 
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    getAllUsers
 }; // export the controller functions to be used in other files
