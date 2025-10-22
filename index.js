@@ -11,11 +11,12 @@ require('dotenv').config();
 app.use(express.json()) // Allow express to parse json
 app.use(express.urlencoded({extended:false})) // Allow express to parse urlencoded data
 
+
 // ROUTES
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 
-
+//MIDDLEWARE
 
 
 // Test route

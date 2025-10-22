@@ -12,5 +12,4 @@ router.post('/login', loginUser);
 
 
 
-
 module.exports = router; // export the router to be used in other files
