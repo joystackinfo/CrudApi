@@ -3,7 +3,7 @@ const mongoose = require('mongoose'); // include monogoose
 
 const userSchema = new mongoose.Schema (
     {
-        username:{
+        surname:{
             type: String,
             required: [true , "username must be provided"],
             unique: true
@@ -20,16 +20,18 @@ const userSchema = new mongoose.Schema (
                type: String,
                required: [true, "password must be provided"],
                minlength: [8, "password must be at least 8 characters long"], // ensure the length of password 
+              },
 
-
-              }
-        },
-        {
-            timestamps: true // this will automatically add createdAt and updatedAt fields to the schema
-        }
-);  
-
-
+              role: {
+                    type: String,
+                  enum: ['user', 'admin', 'superadmin'],
+                     default: 'user'
+            }
+    },
+    { 
+      timestamps: true // this will automatically add createdAt and updatedAt
+    }
+);
 
 const user = mongoose.model("user", userSchema) // create a model nmaed user using the schema
 
