@@ -28,15 +28,17 @@ router.get('/', getAllUsers)
  }) ;
 
  //Admin-only route
-  router.get('/admin/users' , verifyToken , authorizeRoles("admin", "superadmin") , async (req , res ) =>{
-    try {
-        const users = await User.find().select("-password") // fecth all user and hide passwords
-        res.json({ msg: "All user (admin access)" , users})
-    } catch (error) {
-       res.status(500).json({error: "Server error" }); 
-    }
-  }
-)
+router.get(  '/admin/users' ,verifyToken,authorizeRoles("admin", "superadmin"),
+  getAllUsers // use the controller instead of inline logic
+);
+
+
+
+  // Superadmin-only route to delete a user
+router.delete('/superadmin/users/:id',verifyToken,authorizeRoles("superadmin"),
+  deleteUser
+);
+
  
 
 

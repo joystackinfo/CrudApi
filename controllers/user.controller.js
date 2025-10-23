@@ -86,15 +86,37 @@ const loginUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find({}, '-password'); // exclude password field
-    res.status(200).json(users);
+    // Only admins and superadmins can fetch all users
+    if (!req.user || !["admin", "superadmin"].includes(req.user.role)) {
+      return res.status(403).json({ error: "Access denied" });
+    }
+
+    const users = await User.find().select("-password"); // hide passwords
+    res.status(200).json({ msg: "All users (admin access)", users });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ error: "Server error" });
   }
 };
 
 
+//Delete a user(superadmin only)
+  const deleteUser = async (req , res) =>{
+    try {
+       const userId = req.params.id;
+const user = await User.findById(userId);
+   if(!user) {
+    return res.status(404).json({ msg: "User not found"})
+   }
 
+     await user.deleteOne(); //delete a user
+      res.status(200).json({ msg: `User ${user.username} deleted successfully`}
+      )
+
+    } catch (error) {
+      res.status(500).json ({ msg: "Server error" , error:err})
+      
+    }
+  };
 
 
 module.exports = {
