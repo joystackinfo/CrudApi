@@ -3,7 +3,7 @@ const mongoose = require('mongoose'); // include monogoose
 
 const userSchema = new mongoose.Schema(
   {
-    surname: {
+    username: {
       type: String,
       required: [true, "username must be provided"],
       unique: true

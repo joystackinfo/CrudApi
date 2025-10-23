@@ -7,7 +7,7 @@ const User = require('../models/user.model.js'); // imort the user model
 //controller function to get all user
        const registerUser = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username,email,password } = req.body;
 
     // Check if any field is missing
     if (!username || !email || !password) { 
