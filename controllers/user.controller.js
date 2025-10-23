@@ -31,7 +31,7 @@ res.status(201).json({
   msg: "User registered successfully",
   user: {
     id: user._id,
-    username: user.username,
+    username: user.username, 
     email: user.email
   }
 });
@@ -80,6 +80,7 @@ const loginUser = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 //Get all users
 
