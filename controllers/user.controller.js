@@ -1,5 +1,4 @@
 
-const { json } = require('express');
  const bcrypt = require('bcryptjs');
  const jwt = require('jsonwebtoken');
 const User = require('../models/user.model.js'); // imort the user model
@@ -113,7 +112,7 @@ const user = await User.findById(userId);
       )
 
     } catch (error) {
-      res.status(500).json ({ msg: "Server error" , error:err})
+      res.status(500).json ({ msg: "Server error" , error:error.message})
       
     }
   };
@@ -122,5 +121,6 @@ const user = await User.findById(userId);
 module.exports = {
     registerUser,
     loginUser,
-    getAllUsers
+    getAllUsers,
+    deleteUser
 }; // export the controller functions to be used in other files

@@ -1,9 +1,8 @@
 const express = require('express'); // include express
-const { registerUser, loginUser,getAllUsers } = require('../controllers/user.controller.js'); //import controller function
+const { registerUser, loginUser,getAllUsers, deleteUser } = require('../controllers/user.controller.js'); //import controller function
 const verifyToken = require('../middleware/authMiddleware.js');
 const authorizeRoles = require('../middleware/authorizeRoles.js');
 const User = require('../models/user.model.js');
-const user = require('../models/user.model.js');
 
 const router = express.Router(); // include express route
 
