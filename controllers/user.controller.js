@@ -24,7 +24,8 @@ const User = require('../models/user.model.js'); // imort the user model
          const user = await User.create({
          username,
          email,
-         password: hashedPassword
+         password: hashedPassword,
+         role: "user" // make it as a default role
 });
 res.status(201).json({
   msg: "User registered successfully",

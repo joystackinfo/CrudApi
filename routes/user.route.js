@@ -13,7 +13,7 @@ router.post('/register', registerUser);
 //Route for user login
 router.post('/login', loginUser); 
 
-//Route for getAllUsers
+//Route for getAllUsers 
 router.get('/', getAllUsers) 
 
 
@@ -25,8 +25,6 @@ router.get('/', getAllUsers)
     });
  }) ;
  
-//Routes for Roles
-router.get('/admin', verifyToken, authorizeRoles('admin', 'superadmin'), adminController);
 
 
 module.exports = router; // export the router to be used in other files
