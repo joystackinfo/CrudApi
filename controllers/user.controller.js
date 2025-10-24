@@ -201,5 +201,6 @@ module.exports = {
     deleteUser,
     updateUserRole,
       getSuperadminDashboard,
-      getUserRole
+      getUserRole,
+      createSuperadmin
 }; // export the controller functions to be used in other files
