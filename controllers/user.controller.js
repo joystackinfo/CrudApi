@@ -10,11 +10,6 @@
   try {
     const { username,email,password } = req.body;
 
-    // Check if any field is missing
-    if (!username || !email || !password) { 
-      return res.status(400).json({ msg: "All fields are required" });
-    }
-
     // Check if user already exists
     const exist = await User.findOne({ email });
     if (exist) {
@@ -126,6 +121,7 @@ const user = await User.findById(userId);
     }
   };
    
+
   //DASHBOARD CONTROLLER
   const getSuperadminDashboard = (req, res) => {
   res.status(200).json({ msg: 'Welcome to the Superadmin dashboard!' });
@@ -176,6 +172,25 @@ const updateUserRole = async (req, res) => {
   }
 };
 
+
+//Create superadmin
+const createSuperadmin = async () => {
+  const exists = await User.findOne({ email: "superadmin@example.com" });
+  if (exists) {
+    console.log("Superadmin already exists");
+    return;
+  }
+
+  const hashedPassword = await bcrypt.hash("NewSuperAdminPass123", 12);
+  const user = await User.create({
+    username: "superadmin",
+    email: "superadmin@example.com",
+    password: hashedPassword,
+    role: "superadmin"
+  });
+
+  console.log("Superadmin created:", user);
+};
 
 
 
