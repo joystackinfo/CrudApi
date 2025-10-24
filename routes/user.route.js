@@ -1,5 +1,5 @@
 const express = require('express'); // include express
-const { registerUser, loginUser,getAllUsers, deleteUser, updateUserRole, createSuperadmin ,getSuperadminDashboard, getUserRole} = require('../controllers/user.controller.js'); //import controller function
+const { registerUser, loginUser,getAllUsers, deleteUser, updateUserRole,getSuperadminDashboard, getUserRole} = require('../controllers/user.controller.js'); //import controller function
 const verifyToken = require('../middleware/authMiddleware.js');
 const authorizeRoles = require('../middleware/authorizeRoles.js');
 
@@ -43,14 +43,6 @@ router.delete('/superadmin/users/:id',verifyToken,authorizeRoles("superadmin"),
 );
 
 
-router.post('/setup/superadmin', async (req, res) => {
-  try {
-    await createSuperadmin();
-    res.status(201).json({ msg: "Superadmin created or already exists" });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
 
 
 
