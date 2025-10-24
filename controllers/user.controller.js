@@ -1,7 +1,8 @@
 
  const bcrypt = require('bcryptjs');
  const jwt = require('jsonwebtoken');
-const User = require('../models/user.model.js'); // imort the user model
+ const User = require('../models/user.model');
+
 
 
 //controller function to get all user
@@ -116,11 +117,65 @@ const user = await User.findById(userId);
       
     }
   };
+   
+  //DASHBOARD CONTROLLER
+  const getSuperadminDashboard = (req, res) => {
+  res.status(200).json({ msg: 'Welcome to the Superadmin dashboard!' });
+};
+
+
+  // UPDATE USER ROLES
+ 
+const updateUserRole = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { role } = req.body;
+    const allowed = ['user', 'admin', 'superadmin'];
+
+    // basic validation
+    if (!role || !allowed.includes(role)) {
+      return res.status(400).json({ error: 'Invalid role specified' });
+    }
+
+    // Prevent a user from changing their own role via this endpoint
+    if (req.user && req.user.id === id) {
+      return res.status(403).json({ error: "You can't change your own role" });
+    }
+
+    // Find the target user
+    const target = await User.findById(id);
+    if (!target) return res.status(404).json({ error: 'User not found' });
+
+    // If the target is a superadmin and we're trying to demote them,
+    // make sure we don't remove the last remaining superadmin.
+    if (target.role === 'superadmin' && role !== 'superadmin') {
+      const superadminCount = await User.countDocuments({ role: 'superadmin' });
+      if (superadminCount <= 1) {
+        return res.status(400).json({ error: 'Cannot demote the last superadmin' });
+      }
+    }
+
+    // perform update
+    target.role = role;
+    await target.save();
+
+    // return the updated user (without password)
+    const updated = await User.findById(id).select('-password');
+    res.status(200).json({ msg: 'User role updated', user: updated });
+  } catch (error) {
+    console.error('updateUserRole error:', error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
 
 
 module.exports = {
     registerUser,
     loginUser,
     getAllUsers,
-    deleteUser
+    deleteUser,
+    updateUserRole,
+      getSuperadminDashboard
 }; // export the controller functions to be used in other files

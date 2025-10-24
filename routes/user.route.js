@@ -1,8 +1,9 @@
 const express = require('express'); // include express
-const { registerUser, loginUser,getAllUsers, deleteUser } = require('../controllers/user.controller.js'); //import controller function
+const { registerUser, loginUser,getAllUsers, deleteUser, updateUserRole, getSuperadminDashboard} = require('../controllers/user.controller.js'); //import controller function
 const verifyToken = require('../middleware/authMiddleware.js');
 const authorizeRoles = require('../middleware/authorizeRoles.js');
-const User = require('../models/user.model.js');
+
+
 
 const router = express.Router(); // include express route
 
@@ -15,7 +16,8 @@ router.post('/register', registerUser);
 router.post('/login', loginUser); 
 
 //Route for getAllUsers 
-router.get('/', getAllUsers) 
+router.get('/', verifyToken, authorizeRoles('admin', 'superadmin'), getAllUsers);
+
 
 
 //protected Route(user profile)
@@ -38,7 +40,10 @@ router.delete('/superadmin/users/:id',verifyToken,authorizeRoles("superadmin"),
   deleteUser
 );
 
- 
+ //UPDATE ROLES ROUTE
+  router.put('/users/:id/role', verifyToken, authorizeRoles('superadmin'), updateUserRole);
+ router.get('/superadmin/dashboard',  verifyToken, authorizeRoles('superadmin'), getSuperadminDashboard)
+
 
 
 module.exports = router; // export the router to be used in other files
