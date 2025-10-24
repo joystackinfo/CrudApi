@@ -4,7 +4,6 @@ const verifyToken = require('../middleware/authMiddleware.js');
 const authorizeRoles = require('../middleware/authorizeRoles.js');
 
 
-
 const router = express.Router(); // include express route
 
 
