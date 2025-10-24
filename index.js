@@ -18,7 +18,13 @@ app.use(express.urlencoded({extended:false})) // Allow express to parse urlencod
 // ROUTES
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
-//MIDDLEWARE
+
+
+  //FOR LOGGING TO TRACK REQUESTS
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+});
 
 
 // Test route
