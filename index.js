@@ -20,6 +20,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 
 
+
   //FOR LOGGING TO TRACK REQUESTS
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
