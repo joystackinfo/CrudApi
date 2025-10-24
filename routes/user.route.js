@@ -1,5 +1,5 @@
 const express = require('express'); // include express
-const { registerUser, loginUser,getAllUsers, deleteUser, updateUserRole, getSuperadminDashboard} = require('../controllers/user.controller.js'); //import controller function
+const { registerUser, loginUser,getAllUsers, deleteUser, updateUserRole, getSuperadminDashboard, getUserRole} = require('../controllers/user.controller.js'); //import controller function
 const verifyToken = require('../middleware/authMiddleware.js');
 const authorizeRoles = require('../middleware/authorizeRoles.js');
 
@@ -33,6 +33,8 @@ router.get(  '/admin/users' ,verifyToken,authorizeRoles("admin", "superadmin"),
   getAllUsers // use the controller instead of inline logic
 );
 
+//get user role by id
+router.get('/users/:id/role', verifyToken, authorizeRoles('admin', 'superadmin'), getUserRole);
 
 
   // Superadmin-only route to delete a user

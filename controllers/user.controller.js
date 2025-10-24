@@ -82,6 +82,14 @@ const loginUser = async (req, res) => {
 };
 
 
+//Get user role by id
+const getUserRole = async (req, res) => {
+  const user = await User.findById(req.params.id).select('username role');
+  if (!user) return res.status(404).json({ msg: 'User not found' });
+  res.status(200).json({ username: user.username, role: user.role });
+};
+
+
 //Get all users
 
 const getAllUsers = async (req, res) => {
@@ -177,5 +185,6 @@ module.exports = {
     getAllUsers,
     deleteUser,
     updateUserRole,
-      getSuperadminDashboard
+      getSuperadminDashboard,
+      getUserRole
 }; // export the controller functions to be used in other files
