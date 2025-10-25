@@ -7,6 +7,8 @@ const authorizeRoles = require('../middleware/authorizeRoles.js');
 const router = express.Router(); // include express route
 
 
+
+
 // Route for user registration
 router.post('/register', registerUser);
 
