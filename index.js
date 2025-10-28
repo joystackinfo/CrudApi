@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 
 // Test route
 app.get('/', (req, res) => {  // create a get route
-  res.send('Hello running from node api server updated');
+  res.send('Hello, Welcome to the CRUD API server '); // send a response
 });
 
 
