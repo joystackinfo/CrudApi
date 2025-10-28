@@ -45,8 +45,6 @@ router.delete('/superadmin/users/:id',verifyToken,authorizeRoles("superadmin"),
 
 
 
-
-
   //UPDATE ROLES ROUTE
   router.put('/users/:id/role', verifyToken, authorizeRoles('superadmin'), updateUserRole);
  router.get('/superadmin/dashboard',  verifyToken, authorizeRoles('superadmin'), getSuperadminDashboard)
