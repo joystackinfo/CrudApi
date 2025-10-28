@@ -28,11 +28,11 @@ app.use((req, res, next) => {
 });
 
 
-
 // Test route
 app.get('/', (req, res) => {  // create a get route
   res.send('Hello, Welcome to the CRUD API server '); // send a response
 });
+
 
 
 // connect to mongodb database using mongoose
