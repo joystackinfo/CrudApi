@@ -17,7 +17,7 @@ app.use(express.urlencoded({extended:false})) // Allow express to parse urlencod
 
 // ROUTES
 app.use("/api/products", productRoutes);
-app.use("/api/users", userRoutes);
+app.use("/api/users", userRoutes); //for user routes
 
 
 
